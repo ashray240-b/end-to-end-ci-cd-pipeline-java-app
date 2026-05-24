@@ -1,14 +1,36 @@
 ---
-version: "3"
-services:
- devopsdb:
-   image: shaikmustafa/harikanew:dbimage
-   ports:
-     - "3306:3306"
+version: "3.9"
 
- application:
-   image: shaikmustafa/harikanew:appimage
-   ports:
-     - "1111:8080"
-   depends_on:
-     - "devopsdb"
+services:
+
+  devopsdb:
+    image: ashraysambu/sam:dbimage
+
+    ports:
+      - "3306:3306"
+
+    deploy:
+      replicas: 3
+
+    networks:
+      - my-net
+
+  application:
+    image: ashraysambu/sam:appimage
+
+    ports:
+      - "1111:8080"
+
+    depends_on:
+      - devopsdb
+
+    deploy:
+      replicas: 3
+
+    networks:
+      - my-net
+
+networks:
+
+  my-net:
+    driver: overlay
