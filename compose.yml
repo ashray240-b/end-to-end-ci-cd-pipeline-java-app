@@ -4,7 +4,7 @@ version: "3.9"
 services:
 
   devopsdb:
-    image: ashraysambu/sam:dbimage
+    image: ashraysambu/sam:db
 
     ports:
       - "3306:3306"
@@ -16,7 +16,7 @@ services:
       - my-net
 
   application:
-    image: ashraysambu/sam:appimage
+    image: ashraysambu/sam:app
 
     ports:
       - "1111:8080"
